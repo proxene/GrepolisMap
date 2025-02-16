@@ -1,4 +1,5 @@
 use core::fmt;
+
 use std::collections::HashSet;
 use std::default::Default;
 use std::sync::{mpsc, Arc};
@@ -226,12 +227,8 @@ impl TownSelection {
             !self.collapsed,
         )
         .show_header(ui, |ui| {
-            // add
-            if ui.button("+").clicked() {
-                re = Some(Change::Add);
-            }
             // remove
-            if ui.button("-").clicked() {
+            if ui.button("\u{1F5D1}").clicked() {
                 re = Some(Change::Remove(selection_index));
             }
             // move up

@@ -35,17 +35,24 @@ impl View {
                 ui.separator();
 
                 egui::ScrollArea::vertical().show(ui, |ui| {
+                    
                     let mut selection_change_action: Option<Change> = None;
                     let mut refresh_list = Vec::new();
-                    for (selection_index, selection) in
-                        self.ui_data.selections.iter_mut().enumerate()
-                    {
+                    
+                    for (selection_index, selection) in self.ui_data.selections.iter_mut().enumerate() {
                         let (opt_change, refresh) = selection.make_ui(ui, selection_index);
                         if let Some(change) = opt_change {
                             selection_change_action = Some(change);
                         }
                         refresh_list.push((selection_index, refresh));
                         ui.separator();
+                    }
+                
+                    ui.add_space(10.0);
+                
+                    // add button to create a new selection
+                    if ui.add_sized(egui::vec2(ui.available_width(), 40.0), egui::Button::new(t!("sidepanel.selection.add"))).clicked() {
+                        self.ui_data.selections.push(TownSelection::default());
                     }
 
                     // process selections which need a refresh

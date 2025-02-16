@@ -11,3 +11,5 @@ sidepanel:
   town_toggle:
     all: "Alle Städte:"
     ghosts: "Geisterstädte:"
+  selection:
+    add: "Eine Auswahl hinzufügen"
